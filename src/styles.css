@@ -1,1 +1,32 @@
 /* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Lobster');
+@import url('https://fonts.googleapis.com/css?family=Baloo+Chettan');
+@import '../node_modules/w3-css/w3.css';
+
+.clikable {
+  cursor: pointer;
+}
+
+.spacer{
+  margin-top: 60px;
+}
+
+.myFont {
+  font-family: 'Lobster', cursive;
+}
+
+nav {
+  font-family: 'Baloo Chettan', cursive;
+}
+
+body {
+  /*background: #1e90f0; !* fallback for old browsers *!
+  background: -webkit-linear-gradient(right, #1e90ff, #1e90ff);
+  background: -moz-linear-gradient(right, #1e90ff, #1e90ff);
+  background: -o-linear-gradient(right, #1e90ff, #1e90ff);
+  background: linear-gradient(to left, #1e90ff, #1e90ff);*/
+  font-family: "Roboto", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
