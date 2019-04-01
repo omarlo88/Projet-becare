@@ -1,3 +1,29 @@
-<p>
-  nav-bar works!
-</p>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand active myFont mySize">Planètes.ch</a>
+    </div>
+    <div>
+      <ul class="nav navbar-nav mySize2">
+        <li><a class="clikable" routerLink="/home">Home</a></li>
+        <li><a class="clikable" routerLink="/galeries">Liste des planètes</a></li>
+        <li><a class="clikable" routerLink="/users">Utilisateurs</a></li>
+      </ul>
+    </div>
+    <ul class="nav navbar-nav navbar-right mySize2">
+      <li><a class="clikable" routerLink="/user/login">
+        <span class="glyphicon glyphicon-user"></span> Connexion </a>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right mySize2">
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+           aria-expanded="false"><span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a class="clikable">Déconnexion</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</nav>
+
