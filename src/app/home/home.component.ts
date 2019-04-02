@@ -8,14 +8,10 @@ import {PlanetesService} from '../planetes/services/planetes.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private planetesService: PlanetesService) { }
+  constructor() { }
 
   ngOnInit() {
-    this.planetesService.chercherPlanetes().subscribe(data =>{
-      console.log(data);
-    }, err =>{
-      console.log(err);
-    });
+
   }
 
 }

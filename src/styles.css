@@ -30,3 +30,11 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.mySize {
+  font-size: 2em;
+}
+
+.mySize2 {
+  font-size: 1.2em;
+}

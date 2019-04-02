@@ -1,1 +1,40 @@
 <app-nav-bar></app-nav-bar>
+<div class="container-fluid spacer">
+  <div class="row">
+    <div class="col-md-4">
+      <form [formGroup]="planetesForm">
+        <div [ngClass]="{'has-error has-feedback':planetesForm.get('motCle').invalid}" class="form-group">
+          <input type="text" class="form-control" formControlName="motCle"
+                 (input)="onChercher()" placeholder="Saisissez votre mot clé..." autocomplete="false">
+          <div class="help-block" *ngIf="planetesForm.get('motCle').invalid
+          && (planetesForm.get('motCle').touched || planetesForm.get('motCle').dirty)">
+            Il faut utiliser que les lettres de l'alphabet*
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div>
+    <table class="w3-table w3-hoverable w3-striped w3-bordered clikable mySize2">
+      <thead>
+        <tr class="w3-cyan">
+          <th>Nom</th>
+          <th>Population</th>
+          <th>Diamètre</th>
+        </tr>
+      </thead>
+      <tr *ngFor="let p of planetes | paginate: { itemsPerPage: 10, currentPage: p }">
+        <td>{{p.name}}</td>
+        <td>{{isValide(p.population) ? format(p.population)  : "Population inconnue"}}
+          </td>
+        <td>{{format(p.diameter)}}</td>
+      </tr>
+    </table>
+    <pagination-controls
+      previousLabel="Précédent"
+      nextLabel="Suivant"
+      class="spacer" (pageChange)="p = $event" style="float: right; margin-top: 10px">
+
+    </pagination-controls>
+  </div>
+</div>

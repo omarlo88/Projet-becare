@@ -3,16 +3,27 @@ import { CommonModule } from '@angular/common';
 import { UserComponent } from './user/user.component';
 import { LoginComponent } from './user/login/login.component';
 import { RegisterComponent } from './user/register/register.component';
-import {RouterModule} from '@angular/router';
+import {RouterModule, Routes} from '@angular/router';
+import { ListeUsersComponent } from './liste-users/liste-users.component';
 import {NavBarModule} from '../nav-bar/nav-bar.module';
 
+const routes: Routes = [
+  {path:"users", component: ListeUsersComponent},
+  {path:"user", component: UserComponent,
+    children:[
+      {path:"", redirectTo:"register", pathMatch: "full"},
+      {path:"login", component: LoginComponent},
+      {path:"register", component: RegisterComponent}
+    ]
+  }
+];
 
 @NgModule({
-  declarations: [UserComponent, LoginComponent, RegisterComponent],
+  declarations: [UserComponent, LoginComponent, RegisterComponent, ListeUsersComponent],
   imports: [
     CommonModule,
-    RouterModule,
-    //NavBarModule
-  ],
+    RouterModule.forChild(routes),
+    NavBarModule
+  ]
 })
 export class AuthenticationModule { }
