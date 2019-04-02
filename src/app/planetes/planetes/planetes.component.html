@@ -23,20 +23,27 @@
           <th>Diamètre</th>
         </tr>
       </thead>
-      <tr *ngFor="let p of planetes | paginate: { itemsPerPage: 10, currentPage: p }">
+      <!--<tr *ngFor="let p of planetes | paginate: { itemsPerPage: 10, currentPage: pageCurrente }">-->
+      <tr *ngFor="let p of planetes">
         <td>{{p.name}}</td>
         <td>{{isValide(p.population) ? format(p.population)  : "Population inconnue"}}
           </td>
-        <td>{{format(p.diameter)}}</td>
+        <td>{{isValide(p.diameter) ? format(p.diameter) : "Diamètre inconnu"}}</td>
       </tr>
     </table>
     <div class="spacer form-group" style="float: right; margin-top: 10px">
-      <pagination-controls
+      <!--<pagination-controls
         previousLabel="Précédent"
         nextLabel="Suivant"
-         (pageChange)="p = $event">
-      </pagination-controls>
-    </div>
+         (pageChange)="pageCurrente = $event">
+      </pagination-controls>-->
 
+      <ul class="nav nav-pills">
+        <li *ngFor="let p of totalPages; let i = index"
+            [ngClass]="{'active': pageCurrente == i + 1}">
+          <a class="clikable" (click)="goToPage(i)">{{i + 1}}</a>
+        </li>
+      </ul>
+    </div>
   </div>
 </div>

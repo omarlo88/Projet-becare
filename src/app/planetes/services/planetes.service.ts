@@ -1,6 +1,13 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type':  'application/json; utf-8',
+    Accept : 'application/json; utf-8'
+  })
+};
 
 @Injectable({
   providedIn: 'root'
@@ -12,12 +19,13 @@ export class PlanetesService {
 
   constructor(private http: HttpClient) { }
 
-  chercherPlanetes(): Observable<any>{
-    //let url = this.baseUrl + `${this.planetsRessources}` + "?page=1";
-    return this.http.get<any>(this.baseUrl + `${this.planetsRessources}`);
+  chercherPlanetesParMotCle(motCle: string): Observable<any>{
+    return this.http.get<any>(this.baseUrl + `${this.planetsRessources}` + "?search="+ motCle.trim(),
+      httpOptions);
   }
 
-  getPlanetes(url:string): Observable<any>{
-    return this.http.get<any>(url);
+  getPlanetes(page:number): Observable<any>{
+    return this.http.get<any>(this.baseUrl + this.planetsRessources + "?page=" +page,
+      httpOptions);
   }
 }

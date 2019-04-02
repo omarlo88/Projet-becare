@@ -15,9 +15,9 @@ export class PlanetesComponent implements OnInit {
   planetes: any[] = []; // autre façon de déclarer des tableaux de n'importe quel type
   planetesForm: FormGroup;
   totalPlanetes : number;
-  urlNext: string = "";
-  urlPrevious: string = "";
-  p: number = 1;
+  public pageCurrente: number = 1;
+  public totalPages:Array<number>;
+  private size: number = 10;
 
   constructor(private planetesService: PlanetesService,
               private fb: FormBuilder) { }
@@ -26,7 +26,7 @@ export class PlanetesComponent implements OnInit {
     this.planetesForm = this.fb.group({
       motCle:['', Validators.pattern("[a-zA-Z ]*")]
     });
-    this.onChercherParMotCle();
+    this.ongetPlanetes();
   }
 
   isValide(data){
@@ -37,20 +37,39 @@ export class PlanetesComponent implements OnInit {
     return parseInt(diameter).toLocaleString('fr');
   }
 
-  onChercherParMotCle(){
+  ongetPlanetes(){
     if (this.planetesForm.get('motCle').valid) {
       //this.planetesForm.get('motCle').setValue("");
       console.log(this.planetesForm.value);
-      this.planetesService.chercherPlanetes().subscribe(data =>{
+      this.planetesService.getPlanetes(this.pageCurrente).subscribe(data =>{
+        console.log(data);
+        this.planetes = data.results;
+        let nbPages = data.count / this.size;
+        this.totalPlanetes = data.count;
+        if (this.totalPlanetes % this.size != 0) {
+          nbPages = Math.trunc(nbPages);
+          ++nbPages;
+          console.log(nbPages);
+        }
+        this.totalPages = new Array<number>(nbPages);
+      }, err =>{
+        console.log(err);
+      });
+    }
+  }
+
+  goToPage(i: number){
+    this.pageCurrente = i + 1;
+    this.ongetPlanetes();
+  }
+
+  onChercherParMotCle(){
+    let inputValue = this.planetesForm.get('motCle');
+    if (inputValue.valid) {
+      this.planetesService.chercherPlanetesParMotCle(inputValue.value).subscribe(data =>{
         console.log(data);
         this.planetes = data.results;
         this.totalPlanetes = data.count;
-        this.urlNext = data.next;
-        this.urlPrevious = data.urlPrevious;
-        console.log(this.planetes);
-        console.log(this.totalPlanetes);
-        console.log(this.urlNext);
-        console.log(this.urlPrevious);
       }, err =>{
         console.log(err);
       });
