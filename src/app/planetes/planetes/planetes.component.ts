@@ -14,6 +14,9 @@ export class PlanetesComponent implements OnInit {
 
   planetes: any[] = []; // autre façon de déclarer des tableaux de n'importe quel type
   planetesForm: FormGroup;
+  totalPlanetes : number;
+  urlNext: string = "";
+  urlPrevious: string = "";
   p: number = 1;
 
   constructor(private planetesService: PlanetesService,
@@ -23,13 +26,7 @@ export class PlanetesComponent implements OnInit {
     this.planetesForm = this.fb.group({
       motCle:['', Validators.pattern("[a-zA-Z ]*")]
     });
-    this.planetesService.chercherPlanetes().subscribe(data =>{
-      console.log(data);
-      this.planetes = data.results;
-      console.log(this.planetes);
-    }, err =>{
-      console.log(err);
-    });
+    this.onChercherParMotCle();
   }
 
   isValide(data){
@@ -40,10 +37,23 @@ export class PlanetesComponent implements OnInit {
     return parseInt(diameter).toLocaleString('fr');
   }
 
-  onChercher(){
+  onChercherParMotCle(){
     if (this.planetesForm.get('motCle').valid) {
       //this.planetesForm.get('motCle').setValue("");
       console.log(this.planetesForm.value);
+      this.planetesService.chercherPlanetes().subscribe(data =>{
+        console.log(data);
+        this.planetes = data.results;
+        this.totalPlanetes = data.count;
+        this.urlNext = data.next;
+        this.urlPrevious = data.urlPrevious;
+        console.log(this.planetes);
+        console.log(this.totalPlanetes);
+        console.log(this.urlNext);
+        console.log(this.urlPrevious);
+      }, err =>{
+        console.log(err);
+      });
     }
   }
 

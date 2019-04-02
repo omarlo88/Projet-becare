@@ -5,7 +5,7 @@
       <form [formGroup]="planetesForm">
         <div [ngClass]="{'has-error has-feedback':planetesForm.get('motCle').invalid}" class="form-group">
           <input type="text" class="form-control" formControlName="motCle"
-                 (input)="onChercher()" placeholder="Saisissez votre mot clé..." autocomplete="false">
+                 (input)="onChercherParMotCle()" placeholder="Saisissez votre mot clé..." autocomplete="false">
           <div class="help-block" *ngIf="planetesForm.get('motCle').invalid
           && (planetesForm.get('motCle').touched || planetesForm.get('motCle').dirty)">
             Il faut utiliser que les lettres de l'alphabet*
@@ -30,11 +30,13 @@
         <td>{{format(p.diameter)}}</td>
       </tr>
     </table>
-    <pagination-controls
-      previousLabel="Précédent"
-      nextLabel="Suivant"
-      class="spacer" (pageChange)="p = $event" style="float: right; margin-top: 10px">
+    <div class="spacer form-group" style="float: right; margin-top: 10px">
+      <pagination-controls
+        previousLabel="Précédent"
+        nextLabel="Suivant"
+         (pageChange)="p = $event">
+      </pagination-controls>
+    </div>
 
-    </pagination-controls>
   </div>
 </div>

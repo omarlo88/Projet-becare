@@ -16,4 +16,8 @@ export class PlanetesService {
     //let url = this.baseUrl + `${this.planetsRessources}` + "?page=1";
     return this.http.get<any>(this.baseUrl + `${this.planetsRessources}`);
   }
+
+  getPlanetes(url:string): Observable<any>{
+    return this.http.get<any>(url);
+  }
 }
