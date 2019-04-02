@@ -13,6 +13,6 @@ export class PlanetesService {
   constructor(private http: HttpClient) { }
 
   chercherPlanetes(): Observable<any>{
-    return this.http.get<any>(this.baseUrl + `${this.planetsRessources}`);
+    return this.http.get<any>(this.baseUrl + `${this.planetsRessources}` + "?page=2");
   }
 }
