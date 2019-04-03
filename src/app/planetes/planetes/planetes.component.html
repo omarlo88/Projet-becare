@@ -69,23 +69,26 @@
                     <span>{{cp}}</span>
                   </li>
                 </ul>
-                <strong>{{currentePlanete.films}}</strong>
-              <h4>Films: <strong>{{currentePlanete.films}}</strong></h4>
               <p>Gravité: <strong>{{currentePlanete.gravity}}</strong></p>
               <p>Période orbitale: <strong>{{currentePlanete.orbital_period}}</strong></p>
               <p>Population: <strong>{{isValide(currentePlanete.population) ? format(currentePlanete.population)  : currentePlanete.population}}</strong></p>
-              <h4>Résidents: <strong>{{currentePlanete.residents}}</strong></h4>
+              <h4>Résidents:</h4>
+              <ul>
+                <li *ngFor="let cp of currentePlanete.residents">
+                  <span>{{cp}}</span>
+                </li>
+              </ul>
               <p>Période de rotation: <strong>{{currentePlanete.rotation_period}}</strong></p>
               <p>Surface de l'eau: <strong>{{currentePlanete.surface_water}}</strong></p>
               <p>Terrain: <strong>{{isValide(currentePlanete.terrain) ? format(currentePlanete.terrain) : currentePlanete.terrain}}</strong></p>
-              <p>Url: <strong>{{currentePlanete.url}}</strong></p>
+              <p>Url de cette ressource: <strong>{{currentePlanete.url}}</strong></p>
             </div>
             <div class="modal-footer">
               <button type="submit" class="btn btn-danger" data-dismiss="modal">Close</button>
             </div>
-          </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-      </div><!-- /.modal -->
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

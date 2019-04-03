@@ -9,20 +9,20 @@
         <li><a class="clikable" routerLink="/planetes">
           <span><i class="fa fa-globe"></i></span>
           Liste des planètes</a></li>
-        <li><a class="clikable" routerLink="/users">Utilisateurs</a></li>
+        <li *ngIf="isAdmin()"><a class="clikable" routerLink="/users">Utilisateurs</a></li>
       </ul>
     </div>
     <ul class="nav navbar-nav navbar-right mySize2">
-      <li><a class="clikable" routerLink="/user/login">
+      <li *ngIf="!isAuthenticated()"><a class="clikable" routerLink="/user/login">
         <span class="glyphicon glyphicon-user"></span> Connexion </a>
       </li>
     </ul>
     <ul class="nav navbar-nav navbar-right mySize2">
-      <li class="dropdown">
+      <li *ngIf="isAuthenticated()" class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-           aria-expanded="false"><span class="caret"></span></a>
+           aria-expanded="false">{{getUserConnected()}}<span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a class="clikable" routerLink="/home">Déconnexion</a></li>
+          <li><a class="clikable" (click)="onLogout()">Déconnexion</a></li>
         </ul>
       </li>
     </ul>

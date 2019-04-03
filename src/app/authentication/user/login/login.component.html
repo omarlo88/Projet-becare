@@ -1,3 +1,14 @@
-<p>
-  login works!
-</p>
+<div class="login-page">
+  <div class="form">
+    <form [formGroup]="loginForm" class="login-form" (ngSubmit)="onLogin()">
+      <div [ngClass]="{'has-error has-feedback':loginForm.get('username').invalid}">
+        <input type="text" formControlName="username" class="form-control" placeholder="username" autocomplete="false"/>
+      </div>
+      <div [ngClass]="{'has-error has-feedback':loginForm.get('password').invalid}">
+        <input type="password" formControlName="password" class="form-control" placeholder="password" autocomplete="false"/>
+      </div>
+      <button type="submit" [disabled]="!loginForm.valid" class="btn btn-primary">login</button>
+      <p class="message">Pas encore enregistré? <a class="clikable" routerLink="/user/register">S'enregistrer</a></p>
+    </form>
+  </div>
+</div>

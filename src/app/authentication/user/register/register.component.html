@@ -1,3 +1,92 @@
-<p>
-  register works!
-</p>
+<div class="login-page">
+  <div class="form">
+    <!--(ngSubmit)="onRegister(registerForm)"-->
+    <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+      <div class="form-group" [ngClass]="{'has-error has-feedback':registerForm.get('nom').invalid}">
+        <input formControlName="nom" class="form-control" type="text" placeholder="Saisissez votre nom..." autocomplete="false"/>
+        <div *ngIf="registerForm.controls.nom.invalid
+          && (registerForm.controls.nom.touched || registerForm.controls.nom.dirty)">
+          <div class="help-block" *ngIf="registerForm.hasError('required', 'nom')">
+            Le nom est obligatoire*
+          </div>
+        </div>
+      </div>
+      <div class="form-group" [ngClass]="{'has-error has-feedback':registerForm.get('prenom').errors}">
+        <input formControlName="prenom" class="form-control" type="text" placeholder="Saisissez votre prénom" autocomplete="false"/>
+        <div *ngIf="registerForm.get('prenom').invalid
+          && (registerForm.get('prenom').touched || registerForm.get('prenom').dirty)">
+          <div class="help-block" *ngIf="registerForm.hasError('required', 'prenom')">
+            Le prenom est obligatoire*
+          </div>
+        </div>
+      </div>
+      <div class="form-group" [ngClass]="{'has-error has-feedback':registerForm.get('email').invalid}">
+        <input formControlName="email" class="form-control" type="email" placeholder="Saisissez votre email" autocomplete="false"/>
+        <div *ngIf="registerForm.controls['email'].invalid
+          && (registerForm.controls['email'].touched || registerForm.controls['email'].dirty)">
+          <div class="help-block" *ngIf="registerForm.hasError('required', 'email')">
+            L'email est obligatoire*
+          </div>
+          <div class="help-block" *ngIf="registerForm.hasError('pattern', 'email')">
+            L'email est invalide*
+          </div>
+        </div>
+      </div>
+      <div class="form-group" [ngClass]="{'has-error has-feedback':registerForm.get('username').errors}">
+        <input formControlName="username" class="form-control" type="text" placeholder="Saisissez votre username" autocomplete="false"/>
+        <div *ngIf="!registerForm.controls['username'].valid
+          && (registerForm.controls['username'].touched || registerForm.controls['username'].dirty)">
+          <div class="help-block" *ngIf="registerForm.hasError('required', 'username')">
+            Il faut un username*
+          </div>
+          <div class="help-block" *ngIf="registerForm.hasError('minlength', 'username')">
+            Il faut au minimun 4 caractères*
+          </div>
+          <div class="help-block" *ngIf="registerForm.hasError('maxlength', 'username')">
+            Il faut au maximun 12 caractères*
+          </div>
+        </div>
+      </div>
+      <div class="form-group" [ngClass]="{'has-error has-feedback':registerForm.get('password').invalid}">
+        <input formControlName="password" class="form-control" type="password" placeholder="Saisissez votre password" autocomplete="false"/>
+        <div *ngIf="registerForm.get('password').errors
+          && (registerForm.get('password').touched || registerForm.get('password').dirty)">
+          <div class="help-block" *ngIf="registerForm.hasError('required', 'password')">
+            Il faut un password*
+          </div>
+          <div class="help-block" *ngIf="registerForm.hasError('minlength', 'password')">
+            Il faut au minimun 4 caractères*
+          </div>
+          <div class="help-block" *ngIf="registerForm.hasError('maxlength', 'password')">
+            Il faut au maximun 12 caractères*
+          </div>
+        </div>
+      </div>
+      <div class="form-group" [ngClass]="{'has-error has-feedback':registerForm.get('confirmedPassword').invalid}">
+        <input formControlName="confirmedPassword" class="form-control" type="password" placeholder="Confirmez votre password" autocomplete="false"/>
+        <div class="help-block" *ngIf="registerForm.get('confirmedPassword').invalid
+          && (registerForm.get('password').touched || registerForm.get('confirmedPassword').dirty)">
+          Il faut confirmer votre password*
+        </div>
+      </div>
+
+      <!--<app-upload-image></app-upload-image>-->
+
+      <div class="form-group">
+        <input type="file" accept="image/*"
+               (change)="onSelectFile($event)"> <!--multiple="true"-->
+      </div>
+
+      <!--<div class="form-group">
+        <label class="btn btn-danger">
+          <span>Choisir une photo</span>
+          <input formControlName="imageUser" style="display: none" type="file" class="form-control" accept="image/*"
+                 (change)="onSelectFile($event)"> &lt;!&ndash;multiple="true"&ndash;&gt;
+        </label>
+      </div>-->
+
+      <button type="submit" class="btn btn-primary" [disabled]="!registerForm.valid">S'enregistrer</button>
+      <p class="message myCenter">Already registered? <a routerLink="/user/login">Se connecter</a></p>
+    </form>
+  </div>
+</div>

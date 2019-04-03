@@ -6,6 +6,7 @@ import { RegisterComponent } from './user/register/register.component';
 import {RouterModule, Routes} from '@angular/router';
 import { ListeUsersComponent } from './liste-users/liste-users.component';
 import {NavBarModule} from '../nav-bar/nav-bar.module';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 const routes: Routes = [
   {path:"users", component: ListeUsersComponent},
@@ -23,7 +24,9 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    NavBarModule
+    NavBarModule,
+    FormsModule,
+    ReactiveFormsModule,
   ]
 })
 export class AuthenticationModule { }
