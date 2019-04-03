@@ -19,6 +19,8 @@ export class PlanetesComponent implements OnInit {
   public totalPages:Array<number>;
   private size: number = 10;
 
+  public currentePlanete: any = null;
+
   constructor(private planetesService: PlanetesService,
               private fb: FormBuilder) { }
 
@@ -33,8 +35,8 @@ export class PlanetesComponent implements OnInit {
     return !isNaN(data);
   }
 
-  format(diameter){
-    return parseInt(diameter).toLocaleString('fr');
+  format(data){
+    return parseInt(data).toLocaleString('fr');
   }
 
   ongetPlanetes(){
@@ -74,6 +76,11 @@ export class PlanetesComponent implements OnInit {
         console.log(err);
       });
     }
+  }
+
+  displayDetail(p: any){
+    this.currentePlanete = p;
+    console.log(p);
   }
 
 }

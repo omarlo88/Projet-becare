@@ -1,11 +1,12 @@
 <app-nav-bar></app-nav-bar>
 <div class="container-fluid spacer">
+  <router-outlet></router-outlet>
   <div class="row">
     <div class="col-md-4">
       <form [formGroup]="planetesForm">
         <div [ngClass]="{'has-error has-feedback':planetesForm.get('motCle').invalid}" class="form-group">
           <input type="text" class="form-control" formControlName="motCle"
-                 (input)="onChercherParMotCle()" placeholder="Saisissez votre mot clé..." autocomplete="false">
+                 (input)="onChercherParMotCle()" placeholder="Search..." autocomplete="false">
           <div class="help-block" *ngIf="planetesForm.get('motCle').invalid
           && (planetesForm.get('motCle').touched || planetesForm.get('motCle').dirty)">
             Il faut utiliser que les lettres de l'alphabet*
@@ -24,11 +25,12 @@
         </tr>
       </thead>
       <!--<tr *ngFor="let p of planetes | paginate: { itemsPerPage: 10, currentPage: pageCurrente }">-->
-      <tr *ngFor="let p of planetes">
+      <tr *ngFor="let p of planetes" (click)="displayDetail(p)" data-toggle="modal" data-target="#myModal">
+        <!--<td routerLink="/planetes/detail-planete/{{p.name}}"-->
         <td>{{p.name}}</td>
-        <td>{{isValide(p.population) ? format(p.population)  : "Population inconnue"}}
+        <td>{{isValide(p.population) ? format(p.population)  : p.population}}
           </td>
-        <td>{{isValide(p.diameter) ? format(p.diameter) : "Diamètre inconnu"}}</td>
+        <td>{{isValide(p.diameter) ? format(p.diameter) : p.diameter}}</td>
       </tr>
     </table>
     <div class="spacer form-group" style="float: right; margin-top: 10px">
@@ -46,4 +48,39 @@
       </ul>
     </div>
   </div>
+  <div>
+    <!-- Modal -->
+    <div *ngIf="currentePlanete">
+      <div class="modal fade" data-keyboard="false" tabindex="-1" role="dialog" id="myModal">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="submit" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h2 class="modal-title"> Planète: <strong>{{currentePlanete.name}}</strong></h2>
+            </div>
+            <div class="modal-body">
+              <p>Climat: <strong>{{currentePlanete.climate}}</strong></p>
+              <p>Créée en: <strong>{{currentePlanete.created | date : "MMMM d, y, h:mm:ss a z"}}</strong></p>
+              <p>Diamètre: <strong>{{isValide(currentePlanete.diameter) ? format(currentePlanete.diameter) : currentePlanete.diameter}}</strong></p>
+              <p>Edidté en: <strong>{{currentePlanete.edited | date : "MMMM d, y, h:mm:ss a z"}}</strong></p>
+              <p>Films: <strong>{{currentePlanete.films}}</strong></p>
+              <h4>Films: <strong>{{currentePlanete.films}}</strong></h4>
+              <p>Gravité: <strong>{{currentePlanete.gravity}}</strong></p>
+              <p>Période orbitale: <strong>{{currentePlanete.orbital_period}}</strong></p>
+              <p>Population: <strong>{{isValide(currentePlanete.population) ? format(currentePlanete.population)  : currentePlanete.population}}</strong></p>
+              <h4>Résidents: <strong>{{currentePlanete.residents}}</strong></h4>
+              <p>Période de rotation: <strong>{{currentePlanete.rotation_period}}</strong></p>
+              <p>Surface de l'eau: <strong>{{currentePlanete.surface_water}}</strong></p>
+              <p>Terrain: <strong>{{isValide(currentePlanete.terrain) ? format(currentePlanete.terrain) : currentePlanete.terrain}}</strong></p>
+              <p>Url: <strong>{{currentePlanete.url}}</strong></p>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+      </div><!-- /.modal -->
+    </div>
+  </div>
 </div>
+
