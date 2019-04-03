@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {PlanetesService} from '../services/planetes.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
+
 @Component({
   selector: 'app-planetes',
   templateUrl: './planetes.component.html',

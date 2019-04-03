@@ -25,7 +25,6 @@ export class PlanetesService {
   }
 
   getPlanetes(page:number): Observable<any>{
-    console.log(this.baseUrl + this.planetsRessources + "?page=" +page);
     return this.http.get<any>(this.baseUrl + this.planetsRessources + "?page=" +page,
       httpOptions);
   }

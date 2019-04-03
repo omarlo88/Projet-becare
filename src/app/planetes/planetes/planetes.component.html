@@ -60,10 +60,16 @@
             </div>
             <div class="modal-body">
               <p>Climat: <strong>{{currentePlanete.climate}}</strong></p>
-              <p>Créée en: <strong>{{currentePlanete.created | date : "MMMM d, y, h:mm:ss a z"}}</strong></p>
-              <p>Diamètre: <strong>{{isValide(currentePlanete.diameter) ? format(currentePlanete.diameter) : currentePlanete.diameter}}</strong></p>
-              <p>Edidté en: <strong>{{currentePlanete.edited | date : "MMMM d, y, h:mm:ss a z"}}</strong></p>
-              <p>Films: <strong>{{currentePlanete.films}}</strong></p>
+              <p>Créée le: <strong>{{currentePlanete.created | date : "dd MMMM yyyy à h:mm:ss a z"}}</strong></p>
+              <p>Diamètre: {{isValide(currentePlanete.diameter) ? format(currentePlanete.diameter) : currentePlanete.diameter}}</p>
+              <p>Edidtée le: <strong>{{currentePlanete.edited | date : "dd MMMM yyyy à h:mm:ss a z"}}</strong></p>
+               <h4>Films:</h4>
+                <ul>
+                  <li *ngFor="let cp of currentePlanete.films">
+                    <span>{{cp}}</span>
+                  </li>
+                </ul>
+                <strong>{{currentePlanete.films}}</strong>
               <h4>Films: <strong>{{currentePlanete.films}}</strong></h4>
               <p>Gravité: <strong>{{currentePlanete.gravity}}</strong></p>
               <p>Période orbitale: <strong>{{currentePlanete.orbital_period}}</strong></p>
