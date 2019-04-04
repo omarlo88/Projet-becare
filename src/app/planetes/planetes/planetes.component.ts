@@ -43,7 +43,7 @@ export class PlanetesComponent implements OnInit {
   ongetPlanetes(){
     if (this.planetesForm.get('motCle').valid) {
       //this.planetesForm.get('motCle').setValue("");
-      console.log(this.planetesForm.value);
+      //console.log(this.planetesForm.value);
       this.planetesService.getPlanetes(this.pageCurrente).subscribe(data =>{
         console.log(data);
         this.planetes = data.results;
