@@ -29,7 +29,7 @@ export class PlanetesComponent implements OnInit {
     this.planetesForm = this.fb.group({
       motCle:['', Validators.pattern("[a-zA-Z ]*")]
     });
-    this.ongetPlanetes();
+    this.onGetPlanetes();
   }
 
   isValide(data){
@@ -40,7 +40,7 @@ export class PlanetesComponent implements OnInit {
     return parseInt(data).toLocaleString('fr');
   }
 
-  ongetPlanetes(){
+  onGetPlanetes(){
     if (this.planetesForm.get('motCle').valid) {
       //this.planetesForm.get('motCle').setValue("");
       //console.log(this.planetesForm.value);
@@ -63,7 +63,7 @@ export class PlanetesComponent implements OnInit {
 
   goToPage(i: number){
     this.pageCurrente = i + 1;
-    this.ongetPlanetes();
+    this.onGetPlanetes();
   }
 
   onChercherParMotCle(){

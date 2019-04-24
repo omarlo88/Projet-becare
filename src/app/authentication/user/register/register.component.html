@@ -4,12 +4,21 @@
     <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
       <div class="form-group" [ngClass]="{'has-error has-feedback':registerForm.get('nom').invalid}">
         <input formControlName="nom" class="form-control" type="text" placeholder="Saisissez votre nom..." autocomplete="false"/>
-        <div *ngIf="registerForm.controls.nom.invalid
+
+        <!--<div *ngIf="registerForm.controls.nom.invalid
           && (registerForm.controls.nom.touched || registerForm.controls.nom.dirty)">
           <div class="help-block" *ngIf="registerForm.hasError('required', 'nom')">
             Le nom est obligatoire*
           </div>
+        </div>-->
+
+        <div *ngIf="registerForm.get('nom').invalid
+          && (registerForm.get('nom').touched || registerForm.get('nom').dirty)">
+          <div class="help-block" *ngIf="registerForm.hasError('required', 'nom')">
+            Le nom est obligatoire*
+          </div>
         </div>
+
       </div>
       <div class="form-group" [ngClass]="{'has-error has-feedback':registerForm.get('prenom').errors}">
         <input formControlName="prenom" class="form-control" type="text" placeholder="Saisissez votre prénom" autocomplete="false"/>
