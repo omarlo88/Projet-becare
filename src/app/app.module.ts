@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 
@@ -11,6 +11,7 @@ import { HomeComponent } from './home/home.component';
 import {AuthenticationModule} from './authentication/authentication.module';
 import {PlanetesModule} from './planetes/planetes.module';
 import {NavBarModule} from './nav-bar/nav-bar.module';
+import {TokenInterceptorService} from './authentication/token-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,13 @@ import {NavBarModule} from './nav-bar/nav-bar.module';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    /*{
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true
+    }*/
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -5,6 +5,8 @@ import {RouterModule, Routes} from '@angular/router';
 import {NavBarModule} from '../nav-bar/nav-bar.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NgxPaginationModule} from 'ngx-pagination';
+import {TokenInterceptorService} from '../authentication/token-interceptor.service';
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
 
 const routes: Routes = [
   {path:"", redirectTo:"/planetes", pathMatch:"full"},
@@ -21,5 +23,11 @@ const routes: Routes = [
     ReactiveFormsModule,
     NgxPaginationModule
   ],
+
+  /*providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptorService,
+    multi: true
+  }]*/
 })
 export class PlanetesModule { }

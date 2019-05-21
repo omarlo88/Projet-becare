@@ -21,7 +21,7 @@
 
       </div>
       <div class="form-group" [ngClass]="{'has-error has-feedback':registerForm.get('prenom').errors}">
-        <input formControlName="prenom" class="form-control" type="text" placeholder="Saisissez votre prénom" autocomplete="false"/>
+        <input formControlName="prenom" class="form-control" type="text" placeholder="Saisissez votre prénom..." autocomplete="false"/>
         <div *ngIf="registerForm.get('prenom').invalid
           && (registerForm.get('prenom').touched || registerForm.get('prenom').dirty)">
           <div class="help-block" *ngIf="registerForm.hasError('required', 'prenom')">

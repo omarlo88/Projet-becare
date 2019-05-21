@@ -7,9 +7,13 @@ import {RouterModule, Routes} from '@angular/router';
 import { ListeUsersComponent } from './liste-users/liste-users.component';
 import {NavBarModule} from '../nav-bar/nav-bar.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {AuthGuard} from './auth.guard';
+import {AdminGuard} from './admin.guard';
 
 const routes: Routes = [
-  {path:"users", component: ListeUsersComponent},
+  {path:"users", component: ListeUsersComponent,
+    canActivate: [AuthGuard, AdminGuard],
+  },
   {path:"user", component: UserComponent,
     children:[
       {path:"", redirectTo:"register", pathMatch: "full"},
