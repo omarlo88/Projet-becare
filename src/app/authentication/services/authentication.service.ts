@@ -22,7 +22,7 @@ export class AuthenticationService {
   saveToken(jwt:string){
     this.jwt = jwt;
     localStorage.setItem(this.nameToken, jwt);
-    this.parseJWT();
+    //this.parseJWT();
   }
 
   loadToken(){
