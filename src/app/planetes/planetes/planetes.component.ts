@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {PlanetesService} from '../services/planetes.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {HttpHeaders} from '@angular/common/http';
 
 
 @Component({

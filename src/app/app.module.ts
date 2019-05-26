@@ -11,7 +11,7 @@ import { HomeComponent } from './home/home.component';
 import {AuthenticationModule} from './authentication/authentication.module';
 import {PlanetesModule} from './planetes/planetes.module';
 import {NavBarModule} from './nav-bar/nav-bar.module';
-import {TokenInterceptorService} from './authentication/token-interceptor.service';
+import {TokenInterceptorService} from './interceptors/token-interceptor.service';
 
 @NgModule({
   declarations: [

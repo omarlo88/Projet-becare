@@ -7,8 +7,8 @@ import {RouterModule, Routes} from '@angular/router';
 import { ListeUsersComponent } from './liste-users/liste-users.component';
 import {NavBarModule} from '../nav-bar/nav-bar.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {AuthGuard} from './auth.guard';
-import {AdminGuard} from './admin.guard';
+import {AuthGuard} from '../guards/auth.guard';
+import {AdminGuard} from '../guards/admin.guard';
 
 const routes: Routes = [
   {path:"users", component: ListeUsersComponent,
