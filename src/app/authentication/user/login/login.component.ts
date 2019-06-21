@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
       let jwt = res.headers.get('Authorization');
       this.authService.saveToken(jwt);
       this.router.navigateByUrl("/planetes");
-    }, err=>{ console.log(err)})
+    }, err => {console.log(err)})
   }
 
 }

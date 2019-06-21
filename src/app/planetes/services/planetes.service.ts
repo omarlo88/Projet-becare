@@ -15,7 +15,7 @@ const httpOptions = {
 export class PlanetesService {
 
   private readonly baseUrl: string = "https://swapi.co/api";
-  private planetsRessources : string = "/planets/";
+  private planetsRessources: string = "/planets/";
 
   constructor(private http: HttpClient) { }
 

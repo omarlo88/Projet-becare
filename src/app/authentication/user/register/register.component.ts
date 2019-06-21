@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {RegistrationService} from '../../services/registration.service';
 import {myPassValidator} from './myPassValidator';
+import swal from 'sweetalert';
 
 @Component({
   selector: 'app-register',
@@ -53,8 +54,12 @@ export class RegisterComponent implements OnInit {
     formData.append("file", this.selectFile);
     this.registerService.register(formData).subscribe(resp =>{
       console.log(resp);
+      swal("Registration succès!!", "", "success");
       this.router.navigate(["/user/login"])
-    }, error => {console.log(error)});
+    }, error => {
+      console.log(error);
+      swal("Registration error!!", "", "error");
+    });
   }
 
 }
